@@ -1,0 +1,6 @@
+*.pyc
+.DS_Store
+.idea/
+.vagrant/
+venv/
+pocketmoney/service_account_secret.json

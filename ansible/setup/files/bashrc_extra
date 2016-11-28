@@ -1,0 +1,13 @@
+export SRV_IP="$(ip -o -f inet addr show eth1 | awk -F ' +|/' '{print $4}')"
+cd /hollybank
+. /hollybank/venv/bin/activate
+
+echo "Application is running at 127.0.0.1:7900"
+
+alias go="cd /hollybank"
+alias venv=". /hollybank/venv/bin/activate"
+alias runserver="cd /hollybank
+venv
+echo 'Application is running at 127.0.0.1:7900'
+./manage.py runserver 0.0.0.0:8000"
+

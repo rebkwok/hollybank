@@ -1,0 +1,65 @@
+{% extends 'web/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="row pull-right">
+    <div class="col-xs-12">
+    <a href="{% url 'logout' %}" class="btn btn-info">Logout</a>
+    </div>
+    </div>
+    <div class="row">
+     <div class="col-sm-8">
+        <h2>Balance</h2>
+            <div class="well balance">{{ balance }}</div>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>
+            <a
+                data-toggle="collapse"
+                href="#transactions"
+                aria-expanded="false"
+                aria-controls="transactions">
+                <span class="fa fa-plus-square"></span></a>
+            Latest Transactions</h2>
+        </div>
+    </div>
+    <div class="row collapse" id="transactions">
+        <div class="col-xs-12">
+            <div class="col-xs-3"><h4>Date</h4></div>
+            <div class="col-xs-3"><h4>Description</h4></div>
+            <div class="col-xs-2"><h4>In</h4></div>
+            <div class="col-xs-2"><h4>Out</h4></div>
+            <div class="col-xs-2"><h4>Balance</h4></div>
+        </div>
+            {% for value in values %}
+            <div class="col-xs-12">
+                {% for item in value %}
+                <div {% if forloop.counter0 < 2 %}class="col-xs-3"{% else %}class="col-xs-2"{% endif %}>{{ item }}</div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+    </div>
+
+{% if request.user.is_staff %}
+        <div class="row">
+        <div class="col-sm-8">
+            <h2>Withdraw/Deposit</h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group form-horizontal">
+                <input class="form-control" type="text" name="description" required="true" placeholder="Description"/><br/>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">£</span>
+                    <input class="form-control" type="text" id="amount_id" name="amount" required="true"/></div>
+                </div>
+                <input type="submit" class="btn btn-danger" name="withdraw" value="Withdraw"/>
+                <input type="submit" class="btn btn-success" name="deposit" value="Deposit"/>
+            </form>
+        </div>
+    </div>
+{% endif %}
+
+{% endblock content %}

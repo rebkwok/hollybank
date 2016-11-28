@@ -1,0 +1,10 @@
+body {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.balance {
+    background-color: rgba(60, 255, 100, 0.2);
+    font-size: large;
+    font-weight: bold;
+}

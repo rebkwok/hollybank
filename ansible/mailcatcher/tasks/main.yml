@@ -1,0 +1,43 @@
+---
+- name: Install ruby requirements
+  become: true
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - rubygems-integration #for ubuntu 14.04 (older versions may use just rubygems)
+    - libsqlite3-dev
+    - ruby1.9.3
+    - ruby2.0
+
+#- name: Ruby Update Alternatives
+#  become: yes
+#  shell: update-alternatives --set ruby /usr/bin/ruby2.0
+#
+#- name: Gem Update Alternatives
+#  become: yes
+#  shell: update-alternatives --set gem /usr/bin/gem2.0
+
+- name: Fix gem types for mailcatcher (https://github.com/sj26/mailcatcher/issues/277)
+  become: true
+  gem: name=mime-types version=<3
+  tags:
+  - mailcatcher-install-mime-types
+
+- name: Install Mailcatcher
+  become: true
+  gem: name=mailcatcher state=latest user_install=no build_flags=conservative
+  failed_when: false
+
+- name: Add mailcatcher conf file
+  become: true
+  become_user: root
+  copy: src=mailcatcher.conf dest=/etc/init/mailcatcher.conf
+
+- name: Make sure Mailcatcher is not running
+  command: pkill mailcatcher
+  register: command_result
+  failed_when: false
+  changed_when: "command_result.rc == 0"
+
+- name: Start Mailcatcher
+  shell: mailcatcher --ip 0.0.0.0
+  ignore_errors: yes

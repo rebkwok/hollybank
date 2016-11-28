@@ -1,0 +1,4 @@
+---
+virtualenv_path: /hollybank/venv
+project_root_path: /hollybank
+python3_path: /usr/bin/python3.4
