@@ -5,5 +5,5 @@ from web.views import home_view
 
 
 urlpatterns = [
-    url(r'^', home_view, name='home'),
+    url(r'^$', home_view, name='home'),
 ]

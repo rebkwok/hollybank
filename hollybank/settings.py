@@ -39,7 +39,7 @@ if str(DEBUG).lower() in ['true', 'on']:  # pragma: no cover
 else:   # pragma: no cover
     DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [".herokuapp.com", '127.0.0.1']
 
 
 # Application definition
@@ -109,10 +109,11 @@ WSGI_APPLICATION = 'hollybank.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-DATABASES = {
-    'default': env.db(),
-}
-
+if env('HEROKU'):
+    import dj_database_url
+    DATABASES = {'default': dj_database_url.config()}
+else:
+    DATABASES = {'default': env.db()}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -173,47 +174,48 @@ SUPPORT_EMAIL = 'rebkwok@gmail.com'
 
 
 # #####LOGGING######
-LOG_FOLDER = env('LOG_FOLDER')
+if not env('HEROKU'):
+    LOG_FOLDER = env('LOG_FOLDER')
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': '[%(levelname)s] - %(asctime)s - %(name)s - '
-                      '%(message)s',
-            'datefmt': '%Y-%m-%d %H:%M:%S',
-        }
-    },
-    'handlers': {
-        'file_app': {
-            'level': 'INFO',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': os.path.join(LOG_FOLDER, 'hollybank.log'),
-            'maxBytes': 1024*1024*5,  # 5 MB
-            'backupCount': 5,
-            'formatter': 'verbose'
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'formatters': {
+            'verbose': {
+                'format': '[%(levelname)s] - %(asctime)s - %(name)s - '
+                          '%(message)s',
+                'datefmt': '%Y-%m-%d %H:%M:%S',
+            }
         },
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose'
-        }
-    },
-    'loggers': {
-        '': {
-            'handlers': ['console', 'file_app'],
-            'level': 'WARNING',
-            'propagate': True,
+        'handlers': {
+            'file_app': {
+                'level': 'INFO',
+                'class': 'logging.handlers.RotatingFileHandler',
+                'filename': os.path.join(LOG_FOLDER, 'hollybank.log'),
+                'maxBytes': 1024*1024*5,  # 5 MB
+                'backupCount': 5,
+                'formatter': 'verbose'
+            },
+            'console': {
+                'level': 'DEBUG',
+                'class': 'logging.StreamHandler',
+                'formatter': 'verbose'
+            }
         },
-        'banking': {
-            'handlers': ['console', 'file_app'],
-            'level': 'INFO',
-            'propagate': False,
-        },
+        'loggers': {
+            '': {
+                'handlers': ['console', 'file_app'],
+                'level': 'WARNING',
+                'propagate': True,
+            },
+            'banking': {
+                'handlers': ['console', 'file_app'],
+                'level': 'INFO',
+                'propagate': False,
+            },
 
-    },
-}
+        },
+    }
 
 
 # ####HEROKU#######

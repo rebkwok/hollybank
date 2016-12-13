@@ -29,7 +29,7 @@ urlpatterns = [
         r'^logout', auth_views.logout,
         name='logout'
     ),
-    url(r'^', include('web.urls', namespace='web')),
+    url(r'', include('web.urls', namespace='web')),
 ]
 
 
