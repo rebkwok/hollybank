@@ -242,3 +242,17 @@ if DEBUG and 'test' not in sys.argv:  # pragma: no cover
     DEBUG_TOOLBAR_CONFIG = {
         "SHOW_TOOLBAR_CALLBACK": show_toolbar,
     }
+
+
+JSON_KEYFILE_DICT = {
+  "type": "service_account",
+  "project_id": "pocketmoney-150113",
+  "private_key_id": env('JSON_KEYFILE_PRIVATE_KEY_ID'),
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCj+aTTs60JpQoS\n1mcYZhabZucsAuWcLEtHeRC1a78jUEUT0d0SX1E5bl65k+HYbRKxywSpp/3w38bA\nlUS1CW+A31MZK0Yv2WIiVDaK7kYv27rJ111kzMzvQ88x5yexgqUinsxtrt9ptkbL\nWnU6jViYfoLxYS86m9t/loD67AV7d4aZ9RML+ehOm8VJT9NrKEac9AOZWYJNkOh5\nOdINfCdA/ooZlJ6hv6GbCXhZwVDPn2WuqbT4QC6/kigY8t0ylCNEOkUC7H9QFq8w\n/sEYOzdTFRkvUTtHuObTPMicVlvdAU2VMHwz0sPFvk/bc4wzFeL+6TXGjWn+Gtin\nXct4o/5HAgMBAAECggEAIfKNLUcFi/mfHEdHEMYR6BplwbbX0n1ZGHL4ApdL+wOj\nSXcpTaRuLHWtJr53A1eRhz2AuZ8N89BgVX6Ruuk5LHUPvyY2YbGfn3vPzvOFlGLp\nSOBNdZDw3JgtTSeOEDH7/i7iI9MQbdJO1crkejrJHMkUUuTL4lZiGwgNq+UxPV4s\nk1YFNU04/kJ32EbVCirhp1KDkIs8IYEmCNe6kvWHM/HjB5yxHXuw4LVL+7l8zLV4\nI6B1V/4ZbjA6PtDHDRYloeJS88FEkVp3A2xfjIpJIADFm+byEO5vYa2u8L4Qq+a5\nt8+DQjgS15YD7SfH8B48UZDteqrl5j0HZmsYnMKAAQKBgQDWcwlp7/JFao4NtyVL\n75xovNDm0ROPFZqWbbl8Ayn1VvIQNLmWo2cUrS7Z6RzspIS6Tmr/n3CACFhD45wJ\n3bru84C5YcvOPjyCcFpsaI00OnQzv0G9YVwMdOmDZqdAnOF79dzTgQVLyUivsps3\nf6FH0Efl31dq6l24YK6T+alChwKBgQDDvwXDdj+EfEpH+NUlWbyMoFxD+Eu/qFC+\niSDgGlGzi/2NVl7KhL7ryh1l98jCPXn5ZJxtCVmeLpdRNSGVLt0T3KZvcHG+AFxu\nmopP/WGHIOUESv5SlNgEVB3TIE552tpHYsZ4D98vPOVojXRPa31tmdoVuN07IZIA\nNgiX85mWQQKBgQCt/EkP9Qe3f/reb8/HqxBX/ZDzI3/d36Y7E6ygS6TYEwFzWoOU\nDuCL6vIPA81exR+WVBcFa6MHjT2nXtvzOTz3rwGp5glHPEE1htgmCjE9xYsPjMVW\nU84toRDvdfKOPnnGa7QMuSnF0fmx6pN51IfSTs52VtyCtsDw3SfmkHDdswKBgQC8\nkBthO1vcqE52HoJVRKiZXzECWQG/UsjVgwukVjY2G7jYmkceF9pDEaRYQeWnF8mU\nMRNvBf7Knl8t31zGdSqKo5fA6jTnrzlbYouymoeEwG9dP1DXBINDSDSi2RA/2k9D\nTSebKM76llL38KwGhamCFx86paaX+7LFeUe1+PgPAQKBgQDPLfqR+ifUaGBZDGNW\nIAGlJkPFoUvUs1FM6EMSewYOlkxMPqw1UEvCXVucT+K69B7gsVamYogffQ9FfowL\nPDkNOwKIVwB5vZBQnyA76uHAnWC2IfDKnK+FQ1k4qXiLQ5WYqtIi5OlqhsetX2JE\njh+LqREe1nOU6wu+sQXVexN+nw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "pocket-money@pocketmoney-150113.iam.gserviceaccount.com",
+  "client_id": env('JSON_KEYFILE_CLIENT_ID'),
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/pocket-money%40pocketmoney-150113.iam.gserviceaccount.com"
+}

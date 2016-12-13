@@ -1,8 +1,12 @@
+import json
 import os
 
 from oauth2client import tools
 from oauth2client.file import Storage
 from oauth2client.service_account import ServiceAccountCredentials
+
+from django.conf import settings
+
 from .settings import CLIENT_SECRET_FILE, SCOPES
 import argparse
 
@@ -22,9 +26,17 @@ def get_credentials():
     """
     home_dir = os.path.expanduser('~')
     credential_dir = os.path.join(home_dir, '.credentials')
+
     if not os.path.exists(credential_dir):
         os.makedirs(credential_dir)
     credential_path = os.path.join(credential_dir, 'sheets.pocketmoney.json')
+
+    client_secret_file = os.path.join(
+        os.path.dirname(os.path.realpath(__file__)), CLIENT_SECRET_FILE
+    )
+    if not os.path.exists(client_secret_file):
+        with open(client_secret_file, 'w') as outfile:
+            json.dump(settings.JSON_KEYFILE_DICT, outfile, indent=2)
 
     store = Storage(credential_path)
     credentials = store.get()
@@ -32,6 +44,7 @@ def get_credentials():
         secret_file = os.path.join(
             os.path.dirname(os.path.realpath(__file__)), CLIENT_SECRET_FILE
         )
+
         credentials = ServiceAccountCredentials.from_json_keyfile_name(
             secret_file, SCOPES
         )

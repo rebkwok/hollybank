@@ -2,5 +2,7 @@
 .DS_Store
 .idea/
 .vagrant/
+.cache/
+hollybank/.env
 venv/
 pocketmoney/service_account_secret.json
