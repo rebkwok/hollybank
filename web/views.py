@@ -23,7 +23,8 @@ def home_view(request):
         service = get_service()
         spsheet = get_spreadsheet(service)
         values = spsheet.get('values', [])
-        balance = get_balance(service=service, spsheet=spsheet).strip('£')
+        # negative balance returns as "-£1.00" so use replace, not strip
+        balance = get_balance(service=service, spsheet=spsheet).replace('£', '')
         balance = float(balance)
         cache.set('values', json.dumps(values), 300)
         cache.set('balance', balance, 300)
